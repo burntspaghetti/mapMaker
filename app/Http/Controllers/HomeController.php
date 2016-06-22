@@ -17,7 +17,8 @@ class HomeController extends Controller
     public function home()
     {
         $events = Event::all();
+        $maps = \DB::table('map')->get();
 
-        return view('starter-template')->with('events', $events);
+        return view('home', compact('maps', 'events'));
 	}
 }

@@ -12,3 +12,8 @@
 */
 
 Route::get('/', 'HomeController@home');
+Route::get('/test', function()
+{
+    dd('bleh');
+
+});

@@ -29,4 +29,14 @@ class Event extends Model
         return $this->belongsTo('App\Marker');
     }
 
+    public function eventType()
+    {
+        return $this->belongsTo('App\EventType');
+    }
+
+    public function map()
+    {
+        return $this->belongsTo('App\Map');
+    }
+
 }

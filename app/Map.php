@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Marker extends Model
+class Map extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'marker';
+    protected $table = 'map';
 
     /**
      * Get the events for the marker.
