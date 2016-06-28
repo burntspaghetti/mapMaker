@@ -12,7 +12,7 @@
             </div>
             <div class="card-action">
               {{--<a class="waves-effect waves-light btn">Create Map</a>--}}
-              <a href="#">Create Map</a>
+              <a href="{!! action('MapController@create') !!}">Create Map</a>
             </div>
           </div>
         </div>

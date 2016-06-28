@@ -12,8 +12,4 @@
 */
 
 Route::get('/', 'HomeController@home');
-Route::get('/test', function()
-{
-    dd('bleh');
-
-});
+Route::get('/map/create', 'MapController@create');
