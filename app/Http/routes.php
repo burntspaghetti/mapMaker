@@ -12,4 +12,5 @@
 */
 
 Route::get('/', 'HomeController@home');
-Route::get('/map/create', 'MapController@create');
+Route::get('/create', 'MapController@create');
+Route::post('/store', 'MapController@store');

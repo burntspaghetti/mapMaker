@@ -33,15 +33,14 @@
   </nav>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-      <br><br>
-      <h1 class="header center"></h1>
+      @yield('content')
     </div>
   </div>
 
 
-  <div class="container">
-    @yield('content')
-  </div>
+  {{--<div class="container">--}}
+    {{----}}
+  {{--</div>--}}
 
   <footer class="page-footer teal">
     <div class="container">

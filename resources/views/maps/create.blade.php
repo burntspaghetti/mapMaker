@@ -1,38 +1,34 @@
 @extends('master')
 @section('content')
-  
-  {!! Form::open([ 'action' => 'MapController@save', 'class' => 'clearfix', 'style' => 'padding:1em 3em;']) !!}
+  <h1>Create Map</h1>
 
-  <!--name Form Input-->
-  <div class="form-group">
-      {!! Form::label('name', 'Map Name: ') !!}
-      {!! Form::input('text', 'name', null, array('class' => 'form-control')) !!}
-      {!! $errors->first('name', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+  {!! Form::open([ 'action' => 'MapController@store', 'class' => 'clearfix', 'style' => 'padding:1em 3em;']) !!}
+  <div class="row">
+      <div class="input-field col s6">
+          <input placeholder="" id="name" type="text" class="validate">
+          <label for="name">Map Name</label>
+          {!! $errors->first('name', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+      </div>
+      <div class="input-field col s3">
+          <input placeholder="" id="lat" type="text" class="validate">
+          <label for="lat">Latitude</label>
+          {!! $errors->first('lat', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+      </div>
+      <div class="input-field col s3">
+          <input placeholder="" id="lng" type="text" class="validate">
+          <label for="lng">Longitude</label>
+          {!! $errors->first('lng', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+      </div>
   </div>
-
-  <!--lat Form Input-->
-  <div class="form-group">
-      {!! Form::label('lat', 'Latitude: ') !!}
-      {!! Form::input('text', 'lat', null, array('class' => 'form-control')) !!}
-      {!! $errors->first('lat', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+  <div class="row">
+      <div class="input-field col s12">
+          <textarea placeholder="" id="desc" type="text" class="materialize-textarea validate"></textarea>
+          <label for="desc">Description</label>
+          {!! $errors->first('desc', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+      </div>
   </div>
-
-  <!--lng Form Input-->
-  <div class="form-group">
-      {!! Form::label('lng', 'Longitude: ') !!}
-      {!! Form::input('text', 'lng', null, array('class' => 'form-control')) !!}
-      {!! $errors->first('lng', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
-  </div>
-
-  <!--desc Form Input-->
-  <div class="form-group">
-      {!! Form::label('desc', 'Description: ') !!}
-      {!! Form::textarea('desc', null, array('class' => 'form-control')) !!}
-      {!! $errors->first('desc', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
-  </div>
-  
-  <button class="btn btn-success" type="submit">Submit</button>
-  <a href="{!! action('HomeController@home') !!}" class="btn btn-danger">Cancel</a>
+  <button class="waves-effect waves-light btn" type="submit">Submit</button>
+  <a href="{!! action('HomeController@home') !!}" class="waves-effect waves-light btn">Cancel</a>
   
   {!! Form::close() !!}
 
