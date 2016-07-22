@@ -13,6 +13,10 @@ class Map extends Model
      */
     protected $table = 'map';
 
+    protected $fillable = ['name', 'lat', 'lng', 'desc'];
+
+    public $timestamps = false;
+
     /**
      * Get the events for the marker.
      */
