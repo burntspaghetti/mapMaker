@@ -15,3 +15,5 @@ Route::get('/', 'HomeController@home');
 Route::get('/create', 'MapController@create');
 Route::post('/store', 'MapController@store');
 Route::get('/map/{id}', 'MapController@map');
+
+Route::post('createEvent', 'MapController@createEvent');

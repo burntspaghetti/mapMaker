@@ -22,7 +22,7 @@ class CreateEventTable extends Migration
             $table->integer('marker_id')->unsigned();
             $table->foreign('marker_id')->references('id')->on('marker');
             $table->integer('map_id')->unsigned();
-            $table->foreign('map_id')->references('id')->on('admin');
+            $table->foreign('map_id')->references('id')->on('map');
         });
     }
 

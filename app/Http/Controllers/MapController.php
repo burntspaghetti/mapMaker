@@ -31,4 +31,10 @@ class MapController extends Controller
         $map = Map::with(['events'])->find($id);
         return view('maps.map', compact('map'));
     }
+
+    public function createEvent(Requests\StoreEventRequest $request)
+    {
+        dd($request);
+
+    }
 }

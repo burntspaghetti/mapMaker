@@ -13,6 +13,76 @@
 
   <div id="map-canvas" class="map"></div>
 
+  {!! Form::open([ 'action' => 'MapController@createEvent', 'class' => 'clearfix', 'style' => 'padding:1em 3em;']) !!}
+  {!! Form::hidden('map_id', $map->id) !!}
+    <fieldset>
+      <legend>Add Event</legend>
+      <div class="row">
+        <div class="input-field col s4">
+          <input placeholder="" id="lat" name="lat" type="text" class="validate">
+          <label for="lat">Latitude</label>
+          {!! $errors->first('lat', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+        </div>
+        <div class="input-field col s4">
+          <input placeholder="" id="lng" name="lng" type="text" class="validate">
+          <label for="lng">Longitude</label>
+          {!! $errors->first('lng', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+        </div>
+        <div class="input-field col s4">
+          <input type="date" class="datepicker">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea placeholder="" id="details" name="details" type="text" class="materialize-textarea validate"></textarea>
+          <label for="details">Details</label>
+          {!! $errors->first('details', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+        </div>
+      </div>
+
+      <div class="row center">
+        <button class="btn btn-success" type="submit">Create</button>
+      </div>
+    </fieldset>
+  <br>
+  {!! Form::close() !!}
+
+  {!! Form::open([ 'action' => 'MapController@createMarker', 'class' => 'clearfix', 'style' => 'padding:1em 3em;']) !!}
+  {!! Form::hidden('map_id', $map->id) !!}
+  <fieldset>
+    <legend>Add Event</legend>
+    <div class="row">
+      <div class="input-field col s4">
+        <input placeholder="" id="lat" name="lat" type="text" class="validate">
+        <label for="lat">Latitude</label>
+        {!! $errors->first('lat', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+      </div>
+      <div class="input-field col s4">
+        <input placeholder="" id="lng" name="lng" type="text" class="validate">
+        <label for="lng">Longitude</label>
+        {!! $errors->first('lng', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+      </div>
+      <div class="input-field col s4">
+        <input type="date" class="datepicker">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea placeholder="" id="details" name="details" type="text" class="materialize-textarea validate"></textarea>
+        <label for="details">Details</label>
+        {!! $errors->first('details', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+      </div>
+    </div>
+
+    <div class="row center">
+      <button class="btn btn-success" type="submit">Create</button>
+    </div>
+  </fieldset>
+  <br>
+  {!! Form::close() !!}
+
 </div>
 <br><br>
 <style>
@@ -22,6 +92,13 @@
     display: block;
   }
 </style>
+
+<script>
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+</script>
 
 <script>
   function initialize() {
