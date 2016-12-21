@@ -2,33 +2,6 @@
 @section('content')
 
 <div class="section">
-    {{--if no maps, show create map button, else show the maps--}}
-    @if(count($maps) == 0)
-      <div class="row">
-        <div class="col s12 m6">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">Get Started!</span>
-            </div>
-            <div class="card-action">
-              {{--<a class="waves-effect waves-light btn">Create Map</a>--}}
-              <a href="{!! action('MapController@create') !!}">Create Map</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    @else
-      <h1>Maps</h1>
-      <div class="collection">
-        @foreach($maps as $map)
-          <a href="{!! action('MapController@map', [$map->id]) !!}" class="collection-item">{!! $map->name !!}</a>
-        @endforeach
-      </div>
-    @endif
-
-
-</div>
-<div class="section">
   <style>
     .infobox-wrapper {
       display:none;
@@ -39,7 +12,6 @@
   </style>
 
   <div id="map-canvas" class="map"></div>
-
 
 </div>
 <br><br>
@@ -53,7 +25,7 @@
 
 <script>
   function initialize() {
-    var events = <?php echo json_encode($events); ?>;
+    var events = <?php echo json_encode($map->events); ?>;
     var count = events.length;
 
     var uaCampusCoordinates = new google.maps.LatLng( 33.211655052789496, -87.53979206085205 );

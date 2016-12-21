@@ -18,9 +18,9 @@ class Event extends Model
         return $this->belongsTo('App\Location');
     }
 
-    public function admin()
+    public function map()
     {
-        return $this->belongsTo('App\Admin');
+        return $this->belongsTo('App\Map');
     }
 
     public function marker()
@@ -33,10 +33,4 @@ class Event extends Model
     {
         return $this->belongsTo('App\EventType');
     }
-
-    public function map()
-    {
-        return $this->belongsTo('App\Map');
-    }
-
 }

@@ -25,4 +25,9 @@ class Map extends Model
         return $this->hasMany('App\Event');
     }
 
+    public function admin()
+    {
+        return $this->belongsTo('App\Admin');
+    }
+
 }

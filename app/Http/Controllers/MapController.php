@@ -20,9 +20,15 @@ class MapController extends Controller
 
     public function store(StoreMapRequest $request)
     {
-        $map = Map::create($request->all());
+        Map::create($request->all());
         //put map id into session
         //redirect to map view
         return Redirect::action('HomeController@home');
+    }
+
+    public function map($id)
+    {
+        $map = Map::with(['events'])->find($id);
+        return view('maps.map', compact('map'));
     }
 }

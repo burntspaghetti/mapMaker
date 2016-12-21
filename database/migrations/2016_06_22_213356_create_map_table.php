@@ -19,6 +19,8 @@ class CreateMapTable extends Migration
             $table->string('desc');
             $table->float('lat');
             $table->float('lng');
+            $table->integer('admin_id')->unsigned()->nullable();
+            $table->foreign('admin_id')->references('id')->on('admin')->nullable();
         });
     }
 
