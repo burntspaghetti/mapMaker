@@ -26,7 +26,7 @@ class Event extends Model
     public function marker()
     {
         //pass foreign key as second param if necessary
-        return $this->belongsTo('App\Marker');
+        return $this->belongsTo('App\Marker', 'marker_id');
     }
 
     public function eventType()

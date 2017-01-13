@@ -51,31 +51,19 @@
   {!! Form::open([ 'action' => 'MapController@createMarker', 'class' => 'clearfix', 'style' => 'padding:1em 3em;']) !!}
   {!! Form::hidden('map_id', $map->id) !!}
   <fieldset>
-    <legend>Add Event</legend>
+    <legend>Create Marker</legend>
     <div class="row">
       <div class="input-field col s4">
-        <input placeholder="" id="lat" name="lat" type="text" class="validate">
-        <label for="lat">Latitude</label>
-        {!! $errors->first('lat', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+        <input placeholder="" id="type" name="type" type="text" class="validate">
+        <label for="lat">type</label>
+        {!! $errors->first('type', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
       </div>
-      <div class="input-field col s4">
-        <input placeholder="" id="lng" name="lng" type="text" class="validate">
-        <label for="lng">Longitude</label>
-        {!! $errors->first('lng', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
-      </div>
-      <div class="input-field col s4">
-        <input type="date" class="datepicker">
+      <div class="input-field col s8">
+        <input placeholder="" id="html" name="html" type="text" class="validate">
+        <label for="html">HTML</label>
+        {!! $errors->first('html', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
       </div>
     </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <textarea placeholder="" id="details" name="details" type="text" class="materialize-textarea validate"></textarea>
-        <label for="details">Details</label>
-        {!! $errors->first('details', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
-      </div>
-    </div>
-
     <div class="row center">
       <button class="btn btn-success" type="submit">Create</button>
     </div>

@@ -28,6 +28,7 @@ class MapController extends Controller
 
     public function map($id)
     {
+        //get events with markers
         $map = Map::with(['events'])->find($id);
         return view('maps.map', compact('map'));
     }
@@ -35,6 +36,11 @@ class MapController extends Controller
     public function createEvent(Requests\StoreEventRequest $request)
     {
         dd($request);
+
+    }
+
+    public function createMarker()
+    {
 
     }
 }
