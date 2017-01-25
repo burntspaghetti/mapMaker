@@ -18,3 +18,5 @@ Route::get('/map/{id}', 'MapController@map');
 Route::get('/createMarker', 'MapController@createMarker');
 
 Route::post('createEvent', 'MapController@createEvent');
+
+Route::get('/test', 'MapController@test');

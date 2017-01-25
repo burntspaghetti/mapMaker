@@ -12,7 +12,21 @@
   </style>
 
   <div id="map-canvas" class="map"></div>
-
+  <fieldset>
+    <legend>Get Coordinates by Address</legend>
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="" id="address" name="address" type="text" class="validate">
+        <label for="address">Address</label>
+        <p></p>
+        {!! $errors->first('lat', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+      </div>
+    </div>
+    <div class="row center">
+      <button class="btn btn-success" onclick="getCoordinatesByAddress();">Fetch</button>
+    </div>
+  </fieldset>
+  <br>
   {!! Form::open([ 'action' => 'MapController@createEvent', 'class' => 'clearfix', 'style' => 'padding:1em 3em;']) !!}
   {!! Form::hidden('map_id', $map->id) !!}
     <fieldset>
@@ -42,7 +56,7 @@
       </div>
 
       <div class="row center">
-        <button class="btn btn-success" type="submit">Create</button>
+        <button class="btn btn-success" type="submit">Add</button>
       </div>
     </fieldset>
   <br>
@@ -82,9 +96,11 @@
 </style>
 
 <script>
-  $('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
+  $( document ).ready(function() {
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
   });
 </script>
 
@@ -170,6 +186,23 @@
     });
 
     return listener;
+  }
+
+  function getCoordinatesByAddress()
+  {
+    address = document.getElementById('address');
+    if(address.value)
+    {
+      alert('we got it!');
+      var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyD0MpDaU0pdguQWKOubcdRVjlMnwiXcF9E';
+      $.getJSON(url,function(data) { alert(data.value);});
+      //do api call
+    }
+    else
+    {
+      var $toastContent = $('<span style="color:red;"><b>Please enter an address first.</b></span>');
+      Materialize.toast($toastContent, 6000); // 4000 is the duration of the toast
+    }
   }
 
 </script>

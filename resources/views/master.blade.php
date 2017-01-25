@@ -10,8 +10,8 @@
   <script src="{!! URL::asset('dataTables/dataTables.min.js') !!}"></script>
   <script src="//maps.google.com/maps/api/js?sensor=true"></script>
   <script src="{!! URL::asset('gmaps/gmaps.min.js') !!}"></script>
-  <script type="text/javascript" src="{!! asset('v3-utility-library/markerwithlabel/src/markerwithlabel.js') !!}"></script>
-  <script type="text/javascript" src="{!! asset('v3-utility-library/infobox/src/infobox.js') !!}"></script>
+  {{--<script type="text/javascript" src="{!! asset('v3-utility-library/markerwithlabel/src/markerwithlabel.js') !!}"></script>--}}
+  {{--<script type="text/javascript" src="{!! asset('v3-utility-library/infobox/src/infobox.js') !!}"></script>--}}
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
