@@ -12,6 +12,7 @@
   </style>
 
   <div id="map-canvas" class="map"></div>
+  <br>
   <fieldset>
     <legend>Get Coordinates by Address</legend>
     <div class="row">
@@ -27,7 +28,7 @@
     </div>
   </fieldset>
   <br>
-  {!! Form::open([ 'action' => 'MapController@createEvent', 'class' => 'clearfix', 'style' => 'padding:1em 3em;']) !!}
+  {!! Form::open([ 'action' => 'MapController@createEvent', 'class' => 'clearfix', 'style' => '']) !!}
   {!! Form::hidden('map_id', $map->id) !!}
     <fieldset>
       <legend>Add Event</legend>
@@ -63,7 +64,7 @@
   <br>
   {!! Form::close() !!}
 
-  {!! Form::open([ 'action' => 'MapController@createMarker', 'class' => 'clearfix', 'style' => 'padding:1em 3em;']) !!}
+  {!! Form::open([ 'action' => 'MapController@createMarker', 'class' => 'clearfix', 'style' => '']) !!}
   {!! Form::hidden('map_id', $map->id) !!}
   <fieldset>
     <legend>Create Marker</legend>

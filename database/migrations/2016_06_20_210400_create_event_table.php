@@ -16,11 +16,14 @@ class CreateEventTable extends Migration
         {
             $table->increments('id');
             $table->string('date_occurred')->nullable()->default('null');
-            $table->string('details')->default('null');
-            $table->integer('location_id')->unsigned();
-            $table->foreign('location_id')->references('id')->on('location');
-            $table->integer('marker_id')->unsigned();
-            $table->foreign('marker_id')->references('id')->on('marker');
+            $table->string('details')->nullable()->default('null');
+            $table->string('lat')->default('null');
+            $table->string('lng')->default('null');
+            $table->string('location')->nullable()->default('null');
+//            $table->integer('location_id')->unsigned();
+//            $table->foreign('location_id')->references('id')->on('location');
+            $table->integer('marker_id')->nullable()->unsigned();
+            $table->foreign('marker_id')->nullable()->references('id')->on('marker');
             $table->integer('map_id')->unsigned();
             $table->foreign('map_id')->references('id')->on('map');
         });

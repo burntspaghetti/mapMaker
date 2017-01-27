@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Marker;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -29,9 +30,12 @@ class MapController extends Controller
     public function map($id)
     {
         //get events with markers
-        $map = Map::with(['events'])->find($id);
+        $map = Map::with(['events', 'markers'])->find($id);
+        //get marker list for dropdown
+
         return view('maps.map', compact('map'));
     }
+
 
     public function createEvent(Requests\StoreEventRequest $request)
     {
@@ -39,9 +43,14 @@ class MapController extends Controller
 
     }
 
-    public function createMarker()
+    //is inserting html a security risk?
+    //how to minimize?
+//    TODO: clean up old erd stuff: location model
+    public function createMarker(Requests\MarkerRequest $request)
     {
+        Marker::create($request->all());
 
+        return redirect()->action('MapController@map', $request->map_id);
     }
 
     public function test()

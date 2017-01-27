@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Marker extends Model
 {
-    protected $table = 'event';
+    public $timestamps = false;
+    protected $table = 'marker';
+    protected $fillable = ['type', 'html', 'map_id'];
 
     public function events()
     {

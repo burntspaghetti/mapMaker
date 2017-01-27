@@ -16,7 +16,9 @@ class CreateMarkerTable extends Migration
         {
             $table->increments('id');
             $table->string('html');
-            $table->string('name');
+            $table->string('type');
+            $table->integer('map_id')->unsigned()->nullable();
+            $table->foreign('map_id')->references('id')->on('map')->nullable();
         });
     }
 
