@@ -43,7 +43,8 @@
           {!! $errors->first('lng', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
         </div>
         <div class="input-field col s4">
-          <input type="date" class="datepicker">
+          <input placeholder="" id="date_occurred" type="text" name="date_occurred" class="validate">
+          <label for="date_occurred">Date/Time Occurred</label>
         </div>
       </div>
 
@@ -95,28 +96,38 @@
   }
 </style>
 
-<script>
-  $( document ).ready(function() {
-    $('.datepicker').pickadate({
-      selectMonths: true, // Creates a dropdown to control month
-      selectYears: 15 // Creates a dropdown of 15 years to control year
-    });
-  });
-</script>
+{{--<script>--}}
+  {{--$( document ).ready(function() {--}}
+    {{--$('.datepicker').pickadate({--}}
+      {{--selectMonths: true, // Creates a dropdown to control month--}}
+      {{--selectYears: 15 // Creates a dropdown of 15 years to control year--}}
+    {{--});--}}
+  {{--});--}}
+{{--</script>--}}
+
+<link rel="stylesheet" type="text/css" href="{!! asset('datetimepicker/jquery.datetimepicker.css') !!}"/ >
+{{--<script src="{!! asset('datetimepicker/jquery.js') !!}"></script>--}}
+<script src="{!! asset('datetimepicker/build/jquery.datetimepicker.full.min.js') !!}"></script>
 
 <script>
+  jQuery('#date_occurred').datetimepicker();
+</script>
+
+
+<script>
+
+  var uaCampusCoordinates = new google.maps.LatLng( 33.211655052789496, -87.53979206085205 );
+  var myOptions = {
+    zoom: 14,
+    center: uaCampusCoordinates,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var map = new google.maps.Map( document.getElementById( 'map-canvas' ), myOptions );
+
   function initialize() {
     var events = <?php echo json_encode($map->events); ?>;
     var count = events.length;
-
-    var uaCampusCoordinates = new google.maps.LatLng( 33.211655052789496, -87.53979206085205 );
-    var myOptions = {
-      zoom: 14,
-      center: uaCampusCoordinates,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    var map = new google.maps.Map( document.getElementById( 'map-canvas' ), myOptions );
 
     for(x = 0; x < count; x++)
     {
@@ -193,10 +204,35 @@
     address = document.getElementById('address');
     if(address.value)
     {
-      alert('we got it!');
-      var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyD0MpDaU0pdguQWKOubcdRVjlMnwiXcF9E';
-      $.getJSON(url,function(data) { alert(data.value);});
-      //do api call
+      geocoder = new google.maps.Geocoder();
+      geocoder.geocode( {address:address.value}, function(results, status)
+      {
+        if (status == google.maps.GeocoderStatus.OK)
+        {
+//          var myJSONText = JSON.stringify(results);
+//          alert(myJSONText);
+          lat = results[0].geometry.location.lat();
+          lng = results[0].geometry.location.lng();
+
+          map.setCenter(results[0].geometry.location);//center the map over the result
+//          //place a marker at the location
+          var marker = new google.maps.Marker(
+                  {
+                    map: map,
+                    position: results[0].geometry.location
+                  });
+          //put lat and lng into input boxes
+          document.getElementById("lat").value = lat;
+          document.getElementById("lng").value = lng;
+
+          var $toastContent = $('<span style="color:green;"><b>Latitude and longitude found</b></span>');
+          Materialize.toast($toastContent, 6000); // 4000 is the duration of the toast
+
+        }
+        else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
     }
     else
     {
