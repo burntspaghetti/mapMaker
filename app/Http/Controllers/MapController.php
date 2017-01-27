@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\Marker;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -31,16 +32,17 @@ class MapController extends Controller
     {
         //get events with markers
         $map = Map::with(['events', 'markers'])->find($id);
-        //get marker list for dropdown
+        $markers = $map->markers->all();
 
-        return view('maps.map', compact('map'));
+        return view('maps.map', compact('map', 'markers'));
     }
 
 
-    public function createEvent(Requests\StoreEventRequest $request)
+    public function createEvent(Requests\EventRequest $request)
     {
-        dd($request);
+        Event::create($request->all());
 
+        return redirect()->action('MapController@map', $request->map_id);
     }
 
     //is inserting html a security risk?

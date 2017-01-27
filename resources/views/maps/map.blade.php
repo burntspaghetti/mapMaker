@@ -33,19 +33,28 @@
     <fieldset>
       <legend>Add Event</legend>
       <div class="row">
-        <div class="input-field col s4">
+        <div class="input-field col s3">
           <input placeholder="" id="lat" name="lat" type="text" class="validate">
           <label for="lat">Latitude</label>
           {!! $errors->first('lat', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
         </div>
-        <div class="input-field col s4">
+        <div class="input-field col s3">
           <input placeholder="" id="lng" name="lng" type="text" class="validate">
           <label for="lng">Longitude</label>
           {!! $errors->first('lng', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
         </div>
-        <div class="input-field col s4">
+        <div class="input-field col s3">
           <input placeholder="" id="date_occurred" type="text" name="date_occurred" class="validate">
           <label for="date_occurred">Date/Time Occurred</label>
+        </div>
+        <div class="input-field col s3">
+          <select>
+            <option value="" disabled selected></option>
+            @foreach($markers as $marker)
+              <option value="{!! $marker->id !!}">{!! $marker->type !!}</option>
+            @endforeach
+          </select>
+          <label>Materialize Select</label>
         </div>
       </div>
 
@@ -111,6 +120,9 @@
 <script src="{!! asset('datetimepicker/build/jquery.datetimepicker.full.min.js') !!}"></script>
 
 <script>
+  $(document).ready(function() {
+    $('select').material_select();
+  });
   jQuery('#date_occurred').datetimepicker();
 </script>
 

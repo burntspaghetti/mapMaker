@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class StoreEventRequest extends Request
+class EventRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreEventRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreEventRequest extends Request
     public function rules()
     {
         return [
-            //
+            'lat' => 'required|max:100',
+            'lng' => 'required|max:100',
+            'date_occurred' => 'required|max:100',
+            'details' => 'max:500',
         ];
     }
 }

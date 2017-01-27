@@ -2,14 +2,11 @@
 @section('content')
 
 
-  <input id="datetimepicker" type="text" >
-        <!-- this should go after your </body> -->
-<link rel="stylesheet" type="text/css" href="{!! asset('datetimepicker/jquery.datetimepicker.css') !!}"/ >
-{{--<script src="{!! asset('datetimepicker/jquery.js') !!}"></script>--}}
-<script src="{!! asset('datetimepicker/build/jquery.datetimepicker.full.min.js') !!}"></script>
-
-  <script>
-    jQuery('#datetimepicker').datetimepicker();
-  </script>
-
+    <label>Browser Select</label>
+    <select class="browser-default">
+        <option value="" disabled selected>Choose your option</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+    </select>
 @endsection
