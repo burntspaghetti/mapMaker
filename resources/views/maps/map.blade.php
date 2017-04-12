@@ -126,11 +126,26 @@
   jQuery('#date_occurred').datetimepicker();
 </script>
 
+{{--
+  get coordinates function
+--}}
 <script type="text/javascript" src="{!! asset('customJavascript/getCoordinatesByAddress.js') !!}"></script>
 <script>
-  lat = <?php echo json_encode($map->lat); ?>;
-  lng = <?php echo json_encode($map->lng); ?>;
+  mapLat = <?php echo json_encode($map->lat); ?>;
+  mapLng = <?php echo json_encode($map->lng); ?>;
 </script>
 <script type="text/javascript" src="{!! asset('customJavascript/generateMap.js') !!}"></script>
+
+  <script>
+    events = <?php echo json_encode($map->events); ?>;
+    for (i = 0; i < events.length; i++) {
+      var eventLatLng = {lat: parseFloat(events[i].lat), lng: parseFloat(events[i].lng)};
+      var marker = new google.maps.Marker({
+        position: eventLatLng,
+        map: map,
+        title: events[i].details
+      });
+    }
+  </script>
 
 @endsection

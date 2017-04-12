@@ -1,6 +1,4 @@
-alert(lat);
-
-var mapCoordinates = new google.maps.LatLng( lat, lng );
+var mapCoordinates = new google.maps.LatLng( mapLat, mapLng );
 
 var myOptions = {
     zoom: 14,
