@@ -33,6 +33,8 @@ class MapController extends Controller
         //get events with markers
         $map = Map::with(['events', 'markers'])->find($id);
         $markers = $map->markers->all();
+//        dd($map);
+
 
         return view('maps.map', compact('map', 'markers'));
     }
