@@ -1,4 +1,4 @@
-function getCoordinatesByAddress()
+function getCoordinatesByAddress(isMapPresent)
 {
     address = document.getElementById('address');
     if(address.value)
@@ -13,13 +13,17 @@ function getCoordinatesByAddress()
                 lat = results[0].geometry.location.lat();
                 lng = results[0].geometry.location.lng();
 
-                map.setCenter(results[0].geometry.location);//center the map over the result
-//          //place a marker at the location
-                var marker = new google.maps.Marker(
-                    {
-                        map: map,
-                        position: results[0].geometry.location
-                    });
+                if(isMapPresent == true)
+                {
+                    map.setCenter(results[0].geometry.location);//center the map over the result
+        //          //place a marker at the location
+                    var marker = new google.maps.Marker(
+                        {
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                }
+
                 //put lat and lng into input boxes
                 document.getElementById("lat").value = lat;
                 document.getElementById("lng").value = lng;

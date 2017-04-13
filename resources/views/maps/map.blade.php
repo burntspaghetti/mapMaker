@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="row center">
-      <button class="btn btn-success" onclick="getCoordinatesByAddress();">Fetch</button>
+      <button class="btn btn-success" onclick="getCoordinatesByAddress(true);">Fetch</button>
     </div>
   </fieldset>
   <br>
@@ -80,13 +80,56 @@
     <div class="row">
       <div class="input-field col s4">
         <input placeholder="" id="type" name="type" type="text" class="validate">
-        <label for="lat">type</label>
+        <label for="type">Type</label>
         {!! $errors->first('type', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
       </div>
-      <div class="input-field col s8">
-        <input placeholder="" id="html" name="html" type="text" class="validate">
-        <label for="html">HTML</label>
-        {!! $errors->first('html', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
+      <div class="input-field col s3">
+        <select>
+          <option value="" disabled selected></option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+          <option value="E">E</option>
+          <option value="F">F</option>
+          <option value="G">G</option>
+          <option value="H">H</option>
+          <option value="I">I</option>
+          <option value="J">J</option>
+          <option value="K">K</option>
+          <option value="L">L</option>
+          <option value="M">M</option>
+          <option value="N">N</option>
+          <option value="O">O</option>
+          <option value="P">P</option>
+          <option value="Q">Q</option>
+          <option value="R">R</option>
+          <option value="S">S</option>
+          <option value="T">T</option>
+          <option value="U">U</option>
+          <option value="V">V</option>
+          <option value="W">W</option>
+          <option value="X">X</option>
+          <option value="Y">Y</option>
+          <option value="Z">Z</option>
+        </select>
+        <label>Marker Letter</label>
+      </div>
+      <div class="input-field col s3">
+        <select>
+          <option value="" disabled selected></option>
+          <option value="blue">blue</option>
+          <option value="brown">brown</option>
+          <option value="darkgreen">dark green</option>
+          <option value="green">green</option>
+          <option value="orange">orange</option>
+          <option value="paleblue">pale blue</option>
+          <option value="pink">pink</option>
+          <option value="purple">purple</option>
+          <option value="red">red</option>
+          <option value="yellow">yellow</option>
+        </select>
+        <label>Marker Color</label>
       </div>
     </div>
     <div class="row center">
@@ -133,17 +176,19 @@
 <script>
   mapLat = <?php echo json_encode($map->lat); ?>;
   mapLng = <?php echo json_encode($map->lng); ?>;
+  events = <?php echo json_encode($map->events); ?>;
 </script>
 <script type="text/javascript" src="{!! asset('customJavascript/generateMap.js') !!}"></script>
 
   <script>
-    events = <?php echo json_encode($map->events); ?>;
+    var image = '../GoogleMapsMarkers/blue_MarkerA.png';
     for (i = 0; i < events.length; i++) {
       var eventLatLng = {lat: parseFloat(events[i].lat), lng: parseFloat(events[i].lng)};
       var marker = new google.maps.Marker({
         position: eventLatLng,
         map: map,
-        title: events[i].details
+        title: events[i].details,
+        icon: image
       });
     }
   </script>
