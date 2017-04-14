@@ -10,10 +10,7 @@
   <script src="{!! URL::asset('dataTables/dataTables.min.js') !!}"></script>
   <script src="//maps.google.com/maps/api/js?sensor=true"></script>
   <script src="{!! URL::asset('gmaps/gmaps.min.js') !!}"></script>
-  {{--<script type="text/javascript" src="{!! asset('v3-utility-library/markerwithlabel/src/markerwithlabel.js') !!}"></script>--}}
-  {{--<script type="text/javascript" src="{!! asset('v3-utility-library/infobox/src/infobox.js') !!}"></script>--}}
 
-  <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="{!! asset('starter-template/css/materialize.css') !!}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="{!! asset('starter-template/css/style.css') !!}" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -22,11 +19,11 @@
   <nav class="teal lighten-2" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Map Maker</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">My Maps</a></li>
+        <li><a href="{!! action('HomeController@home') !!}">My Maps</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">My Maps</a></li>
+        <li><a href="{!! action('HomeController@home') !!}">My Maps</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -78,6 +75,12 @@
   <!--  Scripts-->
   <script src="{!! asset('starter-template/js/materialize.js') !!}"></script>
   <script src="{!! asset('starter-template/js/init.js') !!}"></script>
+  <script>
+    // Initialize collapse button
+    $(".button-collapse").sideNav();
+    // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+    //$('.collapsible').collapsible();
+  </script>
 
   </body>
 </html>
