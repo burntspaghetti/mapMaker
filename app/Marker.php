@@ -8,7 +8,7 @@ class Marker extends Model
 {
     public $timestamps = false;
     protected $table = 'marker';
-    protected $fillable = ['type', 'html', 'map_id'];
+    protected $fillable = ['type', 'letter', 'color', 'map_id'];
 
     public function events()
     {

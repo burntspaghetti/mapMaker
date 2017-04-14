@@ -2,15 +2,6 @@
 @section('content')
 
 <div class="section">
-  <style>
-    .infobox-wrapper {
-      display:none;
-    }
-    #infobox {
-
-    }
-  </style>
-
   <div id="map-canvas" class="map"></div>
   <br>
   <fieldset>
@@ -48,16 +39,15 @@
           <label for="date_occurred">Date/Time Occurred</label>
         </div>
         <div class="input-field col s3">
-          <select>
+          <select name="marker_id">
             <option value="" disabled selected></option>
             @foreach($markers as $marker)
-              <option value="{!! $marker->id !!}">{!! $marker->type !!}</option>
+              <option value="{!! $marker->id !!}">{!! $marker->type . " -  " . $marker->letter . " - " . $marker->color!!}</option>
             @endforeach
           </select>
-          <label>Materialize Select</label>
+          <label>Marker Type</label>
         </div>
       </div>
-
       <div class="row">
         <div class="input-field col s12">
           <textarea placeholder="" id="details" name="details" type="text" class="materialize-textarea validate"></textarea>
@@ -65,7 +55,6 @@
           {!! $errors->first('details', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
         </div>
       </div>
-
       <div class="row center">
         <button class="btn btn-success" type="submit">Add</button>
       </div>
@@ -84,7 +73,7 @@
         {!! $errors->first('type', '<p class="text-danger" style="padding:1em;">:message</p>') !!}
       </div>
       <div class="input-field col s3">
-        <select>
+        <select name="letter">
           <option value="" disabled selected></option>
           <option value="A">A</option>
           <option value="B">B</option>
@@ -116,7 +105,7 @@
         <label>Marker Letter</label>
       </div>
       <div class="input-field col s3">
-        <select>
+        <select name="color">
           <option value="" disabled selected></option>
           <option value="blue">blue</option>
           <option value="brown">brown</option>
@@ -163,34 +152,22 @@
 <script src="{!! asset('datetimepicker/build/jquery.datetimepicker.full.min.js') !!}"></script>
 
 <script>
+  {{--initialize select inputs--}}
   $(document).ready(function() {
     $('select').material_select();
   });
+  {{--initialize date picker--}}
   jQuery('#date_occurred').datetimepicker();
-</script>
 
-{{--
-  get coordinates function
---}}
-<script type="text/javascript" src="{!! asset('customJavascript/getCoordinatesByAddress.js') !!}"></script>
-<script>
+  {{--setting javascript variables for map stuff--}}
   mapLat = <?php echo json_encode($map->lat); ?>;
   mapLng = <?php echo json_encode($map->lng); ?>;
   events = <?php echo json_encode($map->events); ?>;
+  markerArray = <?php echo json_encode($markerArray); ?>;
 </script>
-<script type="text/javascript" src="{!! asset('customJavascript/generateMap.js') !!}"></script>
 
-  <script>
-    var image = '../GoogleMapsMarkers/blue_MarkerA.png';
-    for (i = 0; i < events.length; i++) {
-      var eventLatLng = {lat: parseFloat(events[i].lat), lng: parseFloat(events[i].lng)};
-      var marker = new google.maps.Marker({
-        position: eventLatLng,
-        map: map,
-        title: events[i].details,
-        icon: image
-      });
-    }
-  </script>
+<script type="text/javascript" src="{!! asset('customJavascript/getCoordinatesByAddress.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('customJavascript/generateMap.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('customJavascript/plotMarkers.js') !!}"></script>
 
 @endsection

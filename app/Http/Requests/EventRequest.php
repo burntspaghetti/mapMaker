@@ -28,6 +28,7 @@ class EventRequest extends Request
             'lng' => 'required|max:100',
             'date_occurred' => 'required|max:100',
             'details' => 'max:500',
+            'marker_id' => 'required'
         ];
     }
 }

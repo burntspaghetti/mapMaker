@@ -33,10 +33,17 @@ class MapController extends Controller
         //get events with markers
         $map = Map::with(['events', 'markers'])->find($id);
         $markers = $map->markers->all();
-//        dd($map);
 
 
-        return view('maps.map', compact('map', 'markers'));
+
+        //put all the markers in an array keyed by their ids for javascript marker plotting by event.marker_id
+        $markerArray = [];
+        foreach($markers as $marker)
+        {
+            $markerArray[$marker->id] = $marker;
+        }
+
+        return view('maps.map', compact('map', 'markers', 'markerArray'));
     }
 
 
@@ -47,11 +54,9 @@ class MapController extends Controller
         return redirect()->action('MapController@map', $request->map_id);
     }
 
-    //is inserting html a security risk?
-    //how to minimize?
-//    TODO: clean up old erd stuff: location model
     public function createMarker(Requests\MarkerRequest $request)
     {
+        //TODO: need to make sure a marker with that color and letter is not already taken?
         Marker::create($request->all());
 
         return redirect()->action('MapController@map', $request->map_id);

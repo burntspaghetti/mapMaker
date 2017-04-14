@@ -11,7 +11,7 @@ class Event extends Model
      *
      * @var string
      */
-    public $fillable = ['map_id', 'lat', 'lng', 'date_occurred', 'details'];
+    public $fillable = ['map_id', 'lat', 'lng', 'date_occurred', 'details', 'marker_id'];
     public $timestamps = false;
 
     protected $table = 'event';

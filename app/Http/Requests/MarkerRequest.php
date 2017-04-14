@@ -25,7 +25,8 @@ class MarkerRequest extends Request
     {
         return [
             'type' => 'required|max:200',
-            'html' => 'required|max:200'
+            'letter' => 'required',
+            'color' => 'required',
         ];
     }
 }
